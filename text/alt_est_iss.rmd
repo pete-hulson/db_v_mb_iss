@@ -1,0 +1,114 @@
+---
+title: "Exploring alternative bootstrap estimators for input-sample-size in a multi-level sampling design for age and length composition data"
+
+author:
+  # Alpha first name order for now, will figure out who/where everyone fits later
+  - name: Benjamin C. Williams
+    institute: afscjnu
+  - name: James T. Thorson
+    institute: afscsearefm
+  - name: Matthew R. Siskey
+    institute: wdfw
+  - name: Peter-John F. Hulson
+    institute: afscjnu
+    email: pete.hulson@noaa.gov
+    correspondence: true
+
+institute:
+  - afscjnu: Auke Bay Laboratories, Alaska Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, 17109 Point Lena Loop Rd., Juneau, AK 99801
+  - afscsearefm: Resource Ecology and Fisheries Management Division, Alaska Fisheries Science Center, National Marine Fisheries Service, National Oceanic and Atmospheric Administration, 7600 Sand Point Way NE, Seattle, WA 98115
+  - wdfw: Washington Department of Fish and Wildlife, 111 Washington St. SE, Olympia, WA, 98501
+
+
+output:
+  bookdown::word_document2:
+    toc: false
+    number_sections: false
+    reference_docx: styles_reference.docx
+    pandoc_args:  
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+ 
+
+bibliography: refs.bib   
+csl: canjfas.csl
+
+header-includes:
+  - \usepackage(amsmath) # for cases in equations
+  - \usepackage{booktabs}
+  - \usepackage{cleveref}
+  - \renewcommand{\eqref}{\Cref}
+  - \Crefformat{equation}{#2#1#3}
+
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, error = FALSE)
+```
+
+\newpage
+
+# Abstract 
+
+Integrated assessment models include multiple types of data, and their statistical leverage depends on sample sizes and variances that are assigned by the analyst.
+There is a long history of standardizing survey and fishery catch data to estimate abundance indices and associated variance, but surprisingly little research to standardize compositional data to estimate input-sample-sizes.
+Here we extend this research along three lines: (1) we expand an existing bootstrap estimator to compute an input-sample-size based on resampling individual lengths, age-length specimen samples, and survey hauls, and estimate the relative variance associated with each stage; (2) we compare these bootstrap types with a model-based estimate of input-sample-size; and (3) we compare assessment model outcomes using these alternative input-sample-size estimators.
+Results show that bootstrapping only hauls results in an average input-sample-size for ages of X1 and for lengths of Y1, while bootstrapping hauls, specimens, and length records substantially reduces this to X2 and Y2 [or some other sentence summarizing patterns across Bootstrap Types].
+Also, [add sentence about patterns in input-sample-size by species type and/or life-history].
+Similarly, existing model-based estimators for input-sample-size are typically higher than the full bootstrap estimator, perhaps because the model-based estimator does not propagate imprecision from age-length specimens used to create an age-length key.
+Finally, alternative input sample-size estimators have large/small impacts on a real-world assessment model for Gulf of Alaska Pacific cod.
+We conclude by suggesting avenues for future research to compare bootstrap and model-based estimators of input-sample-size, and also emphasize examples of how this information can be used to optimize survey operations for use in fisheries management.
+
+\newpage
+
+# Introduction
+
+# Methods
+
+# Results
+
+# Discussion
+
+# Acknowledgments
+
+\newpage
+
+# Citations
+
+<div id="refs"></div>
+
+\newpage
+
+# Tables 
+
+<!-- Placeholder table -->
+
+```{r species}
+knitr::kable(vroom::vroom(here::here('tables', 'species.csv')), 
+  caption = "Species assessed at the Alaska Fisheries Science Center that were evaluated in the bootstrap analysis for bottom trawl survey length and age composition input sample size (AI - Aleutian Islands, EBS - Eastern Bering Sea, GOA - Gulf of Alaska)", 
+  align = c('llc'), format.args = list(big.mark = ",", scientific = FALSE))
+```
+
+\newpage
+
+```{r ss-saved}
+knitr::kable(vroom::vroom(here::here('tables', 'scenarios.csv')), 
+             caption = "Bootstrap variability scenarios explored.",
+             align = c('llccc'), 
+             format.args = list(big.mark = ",", scientific = FALSE))
+```
+
+\newpage
+
+# Figures 
+
+```{r bs-flows, fig.cap="Bootstrap-simulation flow chart, with steps referring to the order of operations."}
+knitr::include_graphics(here::here('figs', 'age_flowchart.png'))
+```
+
+```{r iss-age, fig.cap="Example Figure 2 boxplot."}
+knitr::include_graphics(here::here('figs', 'iss_age_lim.png'))
+```
+
