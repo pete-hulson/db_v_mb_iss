@@ -38,6 +38,20 @@ ggplot2::theme_set(
     )
 )
 
+# get vast estimates of iss ----
+
+cod <- readRDS(here::here('output', 'cod', 'pacific_cod_results.RDS'))
+
+yf <- readRDS(here::here('output', 'yellowfin', 'proportionsVAST_proportions.RDS'))
+
+poll <- readRDS(here::here('output', 'pollock', 'VASTresults_age.RDS'))
+
+cod$Proportions$Neff_tl
+
+yf$Neff_tl
+
+poll$Proportions$Neff_tl
+
 # plot data ----
 
 # annual iss
